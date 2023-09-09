@@ -31,4 +31,3 @@ plt.title('Los 5 países afectados con la magnitud más alta')
 plt.show()
 
 # Los registros más altos los tienen los países de Sumatra y Japón (ambos con 9.1), seguido de Chile (con 8.8), Indonesia y Sumatra de nuevo (con 8.6 ambos)
-
