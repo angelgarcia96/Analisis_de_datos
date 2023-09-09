@@ -13,21 +13,45 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 
-# Importamos dataset
+# Importamos dataset.
 df = pd.read_csv('Eartquakes-1990-2023.csv', index_col=0)
 
 
-# Creamos una variable donde estén ordenadas las filas por la magnitud del seísmo, de mayor a menor
+# Número total de terremotos.
+numero_total_terremotos = df.shape[0]
+
+# Desde el año 1990 hasta la actualidad, se han registrado un total de 3.445.751 terremotos.
+
+
+# Terremoto más alto registrado, el más bajo, y la media de todos los terremotos.
+terremoto_max = df['magnitudo'].max()
+terremoto_min =df['magnitudo'].min()
+terremoto_media = df['magnitudo'].mean()
+
+# El terremoto registrado con la puntuación más alta en la escala Richter ha sido de 9.1.
+# El más bajo ha sido de -9.99 puntos.
+# La media de todos los terremotos registrados son de 1.77 puntos.
+
+'''
+Explicación de los terremotos negativos:
+Aunque hoy día usamos distintas escalas dependiendo normalmente de la magnitud del terremoto, para los terremotos más locales 
+y menos energéticos se suele usar una versión modificada de la escala Richter en la que también se tiene en cuenta el logaritmo
+de la amplitud máxima de la onda en el sismograma, de tal manera que cuando la amplitud es menor de 1, el logaritmo de esta da 
+un valor negativo, contribuyendo, si los factores correctores no son mayores, a que la magnitud del terremoto sea negativo.
+'''
+
+
+# Creamos una variable donde estén ordenadas las filas por la magnitud del seísmo, de mayor a menor.
 df_ordenado = df.sort_values(by='magnitudo', ascending=False)
 df_ordenado_cinco_primeros = df_ordenado[:5]
-print(df_ordenado_cinco_primeros['magnitudo'])
 
 
-# Dibujamos en una gráfica los 5 terremotos más altos para poderlo visualizar
+# Dibujamos en una gráfica los 5 terremotos más altos para poderlo visualizar.
 sns.scatterplot(x = 'state', y= 'magnitudo', data= df_ordenado_cinco_primeros)
 plt.xlabel('Países')
 plt.ylabel('Magnitud del terremoto')
 plt.title('Los 5 países afectados con la magnitud más alta')
 plt.show()
 
-# Los registros más altos los tienen los países de Sumatra y Japón (ambos con 9.1), seguido de Chile (con 8.8), Indonesia y Sumatra de nuevo (con 8.6 ambos)
+# Los registros más altos los tienen los países de Sumatra y Japón (ambos con 9.1 puntos en la escala Richter).
+# Les sigue el de Chile (con 8.8), Indonesia y Sumatra nuevamente (con 8.6 ambos).
