@@ -1,0 +1,34 @@
+'''
+Este Dataset muestra todos los terremotos registrados desde el año 1990 hasta el 2023.
+
+Url de descarga del Dataset: https://www.kaggle.com/datasets/alessandrolobello/the-ultimate-earthquake-dataset-from-1990-2023
+
+Autor: Ángel García
+Fecha: 09/09/2023
+'''
+
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+
+#Importamos dataset
+df = pd.read_csv('Eartquakes-1990-2023.csv', index_col=0)
+
+
+# Creamos una variable donde estén ordenadas las filas por la magnitud del seísmo, de mayor a menor
+df_ordenado = df.sort_values(by='magnitudo', ascending=False)
+df_ordenado_cinco_primeros = df_ordenado[:5]
+print(df_ordenado_cinco_primeros['magnitudo'])
+
+
+# Dibujamos en una gráfica los 5 terremotos más altos para poderlo visualizar
+sns.scatterplot(x = 'state', y= 'magnitudo', data= df_ordenado_cinco_primeros)
+plt.xlabel('Países')
+plt.ylabel('Magnitud del terremoto')
+plt.title('Los 5 países afectados con la magnitud más alta')
+plt.show()
+
+# Los registros más altos los tienen los países de Sumatra y Japón (ambos con 9.1), seguido de Chile (con 8.8), Indonesia y Sumatra de nuevo (con 8.6 ambos)
+
