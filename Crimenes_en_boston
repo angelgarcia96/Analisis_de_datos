@@ -1,19 +1,1 @@
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-
-
-# Se importa el dataset
-archivo = pd.read_csv('boston_crimes.csv', index_col=0, low_memory=False)
-
-
-# Se eligen las columnas más importantes, ya que hay 17 y muchas de ellas no proporcionan valor para el análisis
-df = archivo[['OFFENSE_CODE', 'OFFENSE_DESCRIPTION', 'DISTRICT', 'SHOOTING', 'YEAR', 'MONTH', 'DAY_OF_WEEK', 'HOUR', 'STREET']]
-
-
-# Delitos por año
-sns.barplot(data=df, x='YEAR', y= 'OFFENSE_CODE', errorbar=None)
-plt.title('Delitos por año')
-plt.show()
-# En este gráfico podemos ver que desde el año 2017 hay más de 2200 delitos, siendo el 2021 el año que más delitos se han producido en la ciudad de Boston
 
